@@ -24,10 +24,10 @@ pub mod solana_notes {
 pub struct PublishNote<'info> {
     #[account(
         init_if_needed,
-        seeds = [b"note", author.key().as_ref(), &note_id.to_le_bytes()], // ✅ FIXED: Added note_id to seeds
+        seeds = [b"note", author.key().as_ref(), &note_id.to_le_bytes()],  
         bump,
         payer = author,
-        space = Note::SIZE // ✅ Use constant for space
+        space = Note::SIZE  
     )]
     pub note: Account<'info, Note>,
     #[account(mut)]
@@ -42,7 +42,7 @@ pub struct Note {
     pub content: String,
 }
 
-// ✅ Add space constant
+ 
 impl Note {
     pub const SIZE: usize = 8 +      // discriminator
                             32 +     // author (Pubkey)
